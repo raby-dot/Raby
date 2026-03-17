@@ -27,11 +27,9 @@ public class Trap : MonoBehaviour
     {
         while (true)
         {
-            // 1. ADIM: TUZAÐI KAPAT (Her þeyi gizle ve çarpýþmayý kes)
             SetTrapState(false);
             yield return new WaitForSeconds(inactiveDuration);
 
-            // 2. ADIM: TUZAÐI AÇ (Her þeyi göster ve çarpýþmayý aç)
             SetTrapState(true);
             yield return new WaitForSeconds(activeDuration);
         }
@@ -42,13 +40,13 @@ public class Trap : MonoBehaviour
         foreach (var r in allRenderers) r.enabled = state;
         foreach (var c in allColliders) c.enabled = state;
     }
-    // Bu fonksiyonu Trap scriptinin en altýna, ama en son süslü parantezin içine ekle
+  
     private void OnCollisionEnter(Collision collision)
     {
-    // Eðer çarpan nesnenin etiketi (Tag) "Player" ise
+    
         if (collision.gameObject.CompareTag("Player"))
         {
-        // Oyuncunun Die fonksiyonunu çalýþtýr
+      
             collision.gameObject.GetComponent<PlayerController>().Die();
         }
     }
